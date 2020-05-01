@@ -1,0 +1,15 @@
+# Azumarill water fairy 100 50 80 60 80 50
+aqua jet
+play rough
+tackle
+knock off
+# Zapdos electric flying 90 90 85 125 90 100
+discharge
+thunderbolt
+thunder
+heat wave
+# Darmanitan fire * 105 140 55 30 55 95
+brick break
+tackle
+earthquake
+flare blitz
