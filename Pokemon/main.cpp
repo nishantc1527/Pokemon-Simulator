@@ -48,6 +48,7 @@ void create_team() {
 	std::getline(std::cin, team_name);
 	std::getline(std::cin, team_name);
 	add_team_to_file(team_name, u_team);
+	u_teams[team_name] = u_team;
 }
 
 void battle() {
