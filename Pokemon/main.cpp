@@ -60,6 +60,10 @@ void battle() {
 	}
 
 	int in = get_input("Player 1: Which Team Do You Want To Use?", false, keys);
+	if (in == -1) {
+		print("You Have No Teams To Battle With.");
+		return;
+	}
 	std::string p1_team_name = keys[in - 1];
 
 	in = get_input("Player 2: Which Team Do You Want To Use?", false, keys);
