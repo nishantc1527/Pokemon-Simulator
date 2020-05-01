@@ -269,14 +269,13 @@ int get_input(std::string prompt, bool fast, std::vector<std::string> options) {
 		print(std::to_string(option_count) + ": " + options[i], fast ? 10 : 50);
 	}
 	while (true) {
-		int input;
-		std::cin >> input;
+		std::string input;
+		std::getline(std::cin, input);
 
-		if (input < 1 || input > options.size()) {
+		if (!is_valid(input, options.size())) {
 			print("INVALID");
-		}
-		else {
-			return input;
+		} else {
+			return std::stoi(input);
 		}
 	}
 }
@@ -506,4 +505,13 @@ template<typename T>
 std::vector<T> temp_remove(std::vector<T> vec, T& to_remove) {
 	remove(vec, to_remove);
 	return vec;
+}
+
+bool is_valid(std::string to_check, int max_num) {
+	try {
+		int num = std::stoi(to_check);
+		return num >= 1 && num <= max_num;
+	} catch (std::exception& e) {
+		return false;
+	}
 }

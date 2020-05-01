@@ -35,3 +35,5 @@ std::string choose_move(pokemon& p, int player_num);
 
 template <typename T>
 std::vector<T> temp_remove(std::vector<T> vec, T& to_remove);
+
+bool is_valid(std::string to_check, int max_num);
