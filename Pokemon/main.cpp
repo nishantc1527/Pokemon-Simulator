@@ -63,13 +63,13 @@ void battle() {
 		print("You Have No Teams To Battle With.");
 		return;
 	}
-	std::string p1_team_name = keys[in - 1];
+	std::string& p1_team_name = keys[in - 1];
 
 	in = get_input("Player 2: Which Team Do You Want To Use?", false, keys);
-	std::string p2_team_name = keys[in - 1];
+	std::string& p2_team_name = keys[in - 1];
 
 	std::vector<pokemon> p1_team;
-	std::vector<std::string> p1_team_pokemon = u_teams[p1_team_name];
+	std::vector<std::string>& p1_team_pokemon = u_teams[p1_team_name];
 	for (int i = 0; i < 6; i++) {
 		p1_team.push_back(pokemon(u_pokemon[p1_team_pokemon[i]][0], p1_team_pokemon[i],
 			u_pokemon[p1_team_pokemon[i]][1],
@@ -89,10 +89,10 @@ void battle() {
 	}
 
 	in = get_input("Player 1: Choose Your Lead", false, to_string_array(p1_team));
-	pokemon p1_lead = p1_team[in - 1];
+	pokemon& p1_lead = p1_team[in - 1];
 	
 	in = get_input("Player 2: Choose Your Lead", false, to_string_array(p2_team));
-	pokemon p2_lead = p2_team[in - 1];
+	pokemon& p2_lead = p2_team[in - 1];
 
 	battle(p1_team, p2_team, p1_lead, p2_lead);
 }
@@ -126,8 +126,8 @@ void add_pokemon(std::vector<std::string>& u_team) {
 }
 
 void battle(std::vector<pokemon>& p1_team, std::vector<pokemon>& p2_team, pokemon& p1_lead, pokemon& p2_lead) {
-	pokemon curr_p1 = p1_lead;
-	pokemon curr_p2 = p2_lead;
+	pokemon& curr_p1 = p1_lead;
+	pokemon& curr_p2 = p2_lead;
 
 	while (true) {
 		switch (get_input("Player 1: Do You Want To Attack Or Swtich?", false,
