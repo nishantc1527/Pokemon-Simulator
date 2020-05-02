@@ -259,7 +259,7 @@ void battle(std::vector<pokemon>& p1_team, std::vector<pokemon>& p2_team, pokemo
 
 ////////////////Helper Functions///////////////////
 
-int get_input(std::string prompt, bool fast, std::vector<std::string> options) {
+int get_input(const std::string& prompt, bool fast, const std::vector<std::string>& options) {
 	if (options.size() == 0) {
 		return -1;
 	}
@@ -280,7 +280,7 @@ int get_input(std::string prompt, bool fast, std::vector<std::string> options) {
 	}
 }
 
-void print(std::string text, int delay) {
+void print(const std::string& text, int delay) {
 	for (int i = 0; i < text.length(); i++) {
 		std::cout << text[i];
 		Sleep(delay);
@@ -361,7 +361,7 @@ void print_vector(std::vector<T>& vector) {
 	}
 }
 
-std::vector<std::string> split(std::string string) {
+std::vector<std::string> split(std::string& string) {
 	std::vector<std::string> ans;
 	std::stringstream stream(string);
 	std::string next_line;
@@ -373,7 +373,7 @@ std::vector<std::string> split(std::string string) {
 	return ans;
 }
 
-std::string split(std::string string, int index) {
+std::string split(std::string& string, int index) {
 	return split(string)[index];
 }
 
@@ -388,7 +388,7 @@ std::vector<std::pair<K, V>> key_value_pairs(std::unordered_map<K, V>& map) {
 	return ans;
 }
 
-void add_user_pokemon(std::string p_name) {
+void add_user_pokemon(std::string& p_name) {
 	std::vector<std::string> u_moves = get_user_moves(p_name);
 	print("What Do You Want To Name Your Pokemon? Name Must Be Unique");
 	std::string name;
@@ -428,7 +428,7 @@ void add_user_pokemon(std::string p_name) {
 	};
 }
 
-std::vector<std::string> get_user_moves(std::string p_name) {
+std::vector<std::string> get_user_moves(std::string& p_name) {
 	std::vector<std::string> available_moves = pokemon_moves[p_name];
 	std::vector<std::string> u_moves;
 	int move_count = 5;
@@ -441,7 +441,7 @@ std::vector<std::string> get_user_moves(std::string p_name) {
 	return u_moves;
 }
 
-void add_team_to_file(std::string team_name, std::vector<std::string> p_names) {
+void add_team_to_file(std::string& team_name, std::vector<std::string>& p_names) {
 	std::ofstream team_file("user_teams.txt", std::ios_base::app);
 	team_file << team_name << "\n" <<
 		p_names[0] << "\n" <<
@@ -463,7 +463,7 @@ void remove(std::vector<T>& vec, T& element) {
 	}
 }
 
-std::vector<std::string> to_string_array(std::vector<pokemon>& vec) {
+std::vector<std::string> to_string_array(const std::vector<pokemon>& vec) {
 	std::vector<std::string> ans;
 
 	for (int i = 0; i < vec.size(); i++) {
@@ -507,7 +507,7 @@ std::vector<T> temp_remove(std::vector<T> vec, T& to_remove) {
 	return vec;
 }
 
-bool is_valid(std::string to_check, int max_num) {
+bool is_valid(const std::string& to_check, int max_num) {
 	try {
 		int num = std::stoi(to_check);
 		return num >= 1 && num <= max_num;
