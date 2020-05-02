@@ -55,7 +55,7 @@ void battle() {
 	std::vector<std::pair<std::string, std::vector<std::string>>> key_value = key_value_pairs(u_teams);
 	std::vector<std::string> keys;
 
-	for (auto pair : key_value) {
+	for (auto& pair : key_value) {
 		keys.push_back(pair.first);
 	}
 
@@ -102,7 +102,7 @@ void create_pokemon() {
 	std::string input_pokemon;
 	std::vector<std::string> values;
 	std::vector<std::pair<int, std::string>> key_value = key_value_pairs(available_pokemon);
-	for (auto pair : key_value) {
+	for (auto& pair : key_value) {
 		values.push_back(pair.second);
 	}
 	int in = get_input("Which Pokemon Do You Want To Add?", true, values);
@@ -113,7 +113,7 @@ void add_pokemon(std::vector<std::string>& u_team) {
 	std::vector<std::pair<std::string, std::vector<std::string>>> key_value = key_value_pairs(u_pokemon);
 	std::vector<std::string> keys;
 
-	for (auto pair : key_value) {
+	for (auto& pair : key_value) {
 		keys.push_back(pair.first);
 	}
 
@@ -381,7 +381,7 @@ template<typename K, typename V>
 std::vector<std::pair<K, V>> key_value_pairs(std::unordered_map<K, V>& map) {
 	std::vector<std::pair<K, V>> ans;
 
-	for (auto x : map) {
+	for (auto& x : map) {
 		ans.push_back(std::make_pair(x.first, x.second));
 	}
 
