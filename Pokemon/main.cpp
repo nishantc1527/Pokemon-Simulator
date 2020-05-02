@@ -46,7 +46,6 @@ void create_team() {
 	print("What Do You Want To Name Your Team?");
 	std::string team_name;
 	std::getline(std::cin, team_name);
-	std::getline(std::cin, team_name);
 	add_team_to_file(team_name, u_team);
 	u_teams[team_name] = u_team;
 }
@@ -392,7 +391,6 @@ void add_user_pokemon(std::string& p_name) {
 	std::vector<std::string> u_moves = get_user_moves(p_name);
 	print("What Do You Want To Name Your Pokemon? Name Must Be Unique");
 	std::string name;
-	std::getline(std::cin, name);
 	std::getline(std::cin, name);
 	std::ofstream file("user_pokemon.txt", std::ios_base::app);
 	std::vector<std::string> data = split(pokemon_data[p_name]);
