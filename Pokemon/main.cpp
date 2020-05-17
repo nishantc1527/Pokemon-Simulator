@@ -8,7 +8,11 @@
 
 int main() {
 	read_file();
-	start();
+	try {
+		start();
+	} catch(std::exception e) {
+		print("Quitting");
+	}
 }
 
 void start() {
@@ -263,7 +267,7 @@ int get_input(const std::string& prompt, bool fast, const std::vector<std::strin
 		return -1;
 	}
 
-	print(prompt);
+	print(prompt + " If you want to exit, type -2.");
 	for (int i = 0, option_count = 1; i < options.size(); i++, option_count++) {
 		print(std::to_string(option_count) + ": " + options[i], fast ? 10 : 50);
 	}
@@ -274,7 +278,13 @@ int get_input(const std::string& prompt, bool fast, const std::vector<std::strin
 		if (!is_valid(input, options.size())) {
 			print("INVALID");
 		} else {
-			return std::stoi(input);
+			int num = std::stoi(input);
+
+			if(num == -2) {
+				throw std::exception();
+			} else {
+				return std::stoi(input);
+			}
 		}
 	}
 }
@@ -282,7 +292,6 @@ int get_input(const std::string& prompt, bool fast, const std::vector<std::strin
 void print(const std::string& text, int delay) {
 	for (int i = 0; i < text.length(); i++) {
 		std::cout << text[i];
-		Sleep(delay);
 	}
 
 	std::cout << std::endl;
@@ -508,7 +517,7 @@ std::vector<T> temp_remove(std::vector<T> vec, T& to_remove) {
 bool is_valid(const std::string& to_check, int max_num) {
 	try {
 		int num = std::stoi(to_check);
-		return num >= 1 && num <= max_num;
+		return num == -2 || (num >= 1 && num <= max_num);
 	} catch (std::exception& e) {
 		return false;
 	}
