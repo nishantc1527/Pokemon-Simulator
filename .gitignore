@@ -341,3 +341,7 @@ healthchecksdb
 
 # Compiled Files
 *.exe
+
+# Input Files
+user_pokemon.txt
+user_teams.txt
