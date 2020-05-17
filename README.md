@@ -3,11 +3,15 @@
 A Text Based Pokemon Simulator Game, With The Ability To Create Teams And Battle.
 # Running The Program
 First clone the repository.
-    $ git clone https://github.com/nishantc1527/Pokemon-Simulator.git
-    $ cd Pokemon-Simulator/Pokemon
+```
+$ git clone https://github.com/nishantc1527/Pokemon-Simulator.git
+$ cd Pokemon-Simulator/Pokemon
+```
 Then in cygwin (or in git bash if you have g++ installed) run it.
-    $ ./main
-    I already added the .exe file, so you don't have to compile it yourself.
+```
+$ g++ main.cpp -o main
+$ ./main
+```
 # Contributing
 Contributing is welcome and appreciated. Even if you don't know c++, you can contribute in easy ways. Here are some ways you can contribute:
 ## Add A Pokemon
