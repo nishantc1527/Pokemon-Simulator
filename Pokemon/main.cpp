@@ -134,6 +134,21 @@ void battle(std::vector<pokemon>& p1_team, std::vector<pokemon>& p2_team, pokemo
 	pokemon& curr_p2 = p2_lead;
 
 	while (true) {
+		std::ifstream file1(curr_p1.name + ".txt");
+		std::ifstream file2(curr_p2.name + ".txt");
+
+		std::string next_line;
+
+		while(std::getline(file1, next_line)) {
+			print("                                   " + next_line);
+		}
+
+		print("\n\n\n\n\n\n\n\n\n");
+
+		while(std::getline(file2, next_line)) {
+			print(next_line);
+		}
+
 		switch (get_input("Player 1: Do You Want To Attack Or Swtich?", false,
 			{
 				"Attack",
