@@ -4,7 +4,7 @@
 #include "helper_maps.hpp"
 #include "helper_functions.hpp"
 
-namespace util {
+namespace p_util {
 	void print(std::string text) {
 		for (int i = 0; i < text.length(); i++) {
 			std::cout << text[i];
@@ -78,7 +78,7 @@ public:
 	pokemon(std::string& _name, std::string& _nick, std::string& _move1, std::string& _move2, std::string& _move3, std::string& _move4) {
 		name = _name;
 		nick = _nick;
-		std::vector<std::string> data = util::split(pokemon_data[_name]);
+		std::vector<std::string> data = p_util::split(pokemon_data[_name]);
 		type1 = data[2];
 		type2 = data[3];
 		b_hp = std::stoi(data[4]);
@@ -118,7 +118,7 @@ public:
 		const float DAMAGE = ((52 * POWER * (ATTACK / DEFENSE) / 50) + 2) * MODIFIER;
 
 		bool fainted = other.take_damage(DAMAGE);
-		util::print("Player " + std::to_string(player_num) + "'s " + other.nick + " Has " + std::to_string((other.s_hp / other.max_hp) * 100) + "% Of It's HP Left");
+		p_util::print("Player " + std::to_string(player_num) + "'s " + other.nick + " Has " + std::to_string((other.s_hp / other.max_hp) * 100) + "% Of It's HP Left");
 		return fainted;
 	}
 	bool operator==(const pokemon& other) const {
