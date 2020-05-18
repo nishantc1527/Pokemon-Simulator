@@ -8,7 +8,6 @@ namespace p_util {
 	void print(std::string text) {
 		for (int i = 0; i < text.length(); i++) {
 			std::cout << text[i];
-			Sleep(50);
 		}
 
 		std::cout << std::endl;
