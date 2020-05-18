@@ -36,6 +36,8 @@ knock off
 
 Of course it has more moves.  
 
+The last step is to go to [this website](https://manytools.org/hacker-tools/convert-images-to-ascii-art/) to generate the text images. Look up the image of the Pokemon online, submit it into the website, and get your ascii image. Then, copy and past that into a text file called name_of_the_pokemon.txt.
+
 ## Add Moves
 In the move_data.txt file, there you can add moves in this format:  
 
