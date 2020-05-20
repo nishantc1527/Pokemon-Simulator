@@ -1,0 +1,2 @@
+language = "cpp"
+run = "g++ Pokemon/main.cpp -o main && ./main"

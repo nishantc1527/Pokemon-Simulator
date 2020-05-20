@@ -1,3 +1,4 @@
+[![Run on Repl.it](https://repl.it/badge/github/nishantc1527/Pokemon-Simulator)](https://repl.it/github/nishantc1527/Pokemon-Simulator)
 
 # Pokemon-Simulator
 A Text Based Pokemon Simulator Game, With The Ability To Create Teams And Battle.
