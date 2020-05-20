@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <Windows.h>
 #include "helper_functions.hpp"
 #include "gameplay_functions.hpp"
 #include "helper_constants.hpp"
