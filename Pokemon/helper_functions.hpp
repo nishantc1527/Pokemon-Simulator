@@ -37,3 +37,5 @@ template <typename T>
 std::vector<T> temp_remove(std::vector<T> vec, T& to_remove);
 
 bool is_valid(const std::string& to_check, int max_num);
+
+std::string pokemon_image(std::string p_name);

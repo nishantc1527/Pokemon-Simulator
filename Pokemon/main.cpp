@@ -106,7 +106,7 @@ void create_pokemon() {
 	std::vector<std::string> values;
 	std::vector<std::pair<int, std::string>> key_value = key_value_pairs(available_pokemon);
 	for (auto& pair : key_value) {
-		values.push_back(pair.second);
+		values.push_back(pair.second + "\n" + pokemon_image(pair.second));
 	}
 	int in = get_input("Which Pokemon Do You Want To Add?", true, values);
 	add_user_pokemon(available_pokemon[in]);
@@ -536,4 +536,16 @@ bool is_valid(const std::string& to_check, int max_num) {
 	} catch (std::exception& e) {
 		return false;
 	}
+}
+
+std::string pokemon_image(std::string p_name) {
+	std::ifstream file(p_name + ".txt");
+	std::string next_line;
+	std::stringstream ss;
+	
+	while(std::getline(file, next_line)) {
+		ss << next_line << std::endl;
+	}
+
+	return ss.str();	
 }
