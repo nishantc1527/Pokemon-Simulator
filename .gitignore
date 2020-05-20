@@ -343,5 +343,5 @@ healthchecksdb
 *.exe
 
 # Input Files
-user_pokemon.txt
-user_teams.txt
+Pokemon/user_pokemon.txt
+Pokemon/user_teams.txt
