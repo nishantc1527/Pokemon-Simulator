@@ -7,7 +7,7 @@ First clone the repository.
 $ git clone https://github.com/nishantc1527/Pokemon-Simulator.git
 $ cd Pokemon-Simulator/Pokemon
 ```
-Then in cygwin (or in git bash if you have g++ installed) run it.
+Then in cygwin (or wherever you have g++ installed) run it.
 ```
 $ g++ main.cpp -o main
 $ ./main
