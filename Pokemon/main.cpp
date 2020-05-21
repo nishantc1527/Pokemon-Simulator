@@ -8,7 +8,7 @@
 int main() {
 	read_file();
 	try {
-		start();
+	  start();
 	} catch(std::exception e) {
 		print("Quitting");
 	}
@@ -104,11 +104,11 @@ void create_pokemon() {
 	std::string input_pokemon;
 	std::vector<std::string> values;
 	std::vector<std::pair<int, std::string>> key_value = key_value_pairs(available_pokemon);
-	for (auto& pair : key_value) {
-		values.push_back(pair.second + "\n" + pokemon_image(pair.second));
+	for (int i = 0; i < key_value.size(); i ++) {
+		values.push_back(key_value[i].second + "\n" + pokemon_image(key_value[i].second));
 	}
 	int in = get_input("Which Pokemon Do You Want To Add?", true, values);
-	add_user_pokemon(available_pokemon[in]);
+	add_user_pokemon(key_value[in - 1].second);
 }
 
 void add_pokemon(std::vector<std::string>& u_team) {
