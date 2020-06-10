@@ -3,6 +3,15 @@
 # Pokemon-Simulator
 A Text Based Pokemon Simulator Game, With The Ability To Create Teams And Battle.
 # Running The Program
+
+There are various ways to run this.  
+
+The first and easiest way is to click the button on the top of this page that saysy "Run On Repl.it" to easily run on repl.it.  
+
+The next way is to open this repository on file explorer by either cloning it into github desktop, or manually cloning. Then click on the PokemonSimulator.sln to open in Visual Studio.  
+
+If you really want, you can use bash to run it on your shell.  
+
 First clone the repository.
 ```
 $ git clone https://github.com/nishantc1527/Pokemon-Simulator.git
