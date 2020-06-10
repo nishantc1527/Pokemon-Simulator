@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Pokemon.dir/main.cpp.o  -o Pokemon.exe -Wl,--out-implib,libPokemon.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

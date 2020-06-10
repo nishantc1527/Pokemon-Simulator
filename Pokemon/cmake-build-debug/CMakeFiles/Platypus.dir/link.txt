@@ -1,0 +1,1 @@
+/usr/bin/c++.exe -g  -Wl,--enable-auto-import CMakeFiles/Platypus.dir/main.cpp.o  -o Platypus.exe -Wl,--out-implib,libPlatypus.dll.a -Wl,--major-image-version,0,--minor-image-version,0 

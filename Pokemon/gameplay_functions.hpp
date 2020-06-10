@@ -3,7 +3,7 @@
 #include <vector>
 #include "pokemon.hpp"
 
-void start();
+[[noreturn]] void start();
 void create_team();
 void battle();
 void create_pokemon();

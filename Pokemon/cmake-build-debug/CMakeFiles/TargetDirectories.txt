@@ -1,0 +1,3 @@
+/cygdrive/d/Github/myrepos/Pokemon-Simulator/Pokemon/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/d/Github/myrepos/Pokemon-Simulator/Pokemon/cmake-build-debug/CMakeFiles/Pokemon.dir
+/cygdrive/d/Github/myrepos/Pokemon-Simulator/Pokemon/cmake-build-debug/CMakeFiles/edit_cache.dir

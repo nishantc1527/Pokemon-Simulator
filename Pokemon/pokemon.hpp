@@ -5,15 +5,15 @@
 #include "helper_functions.hpp"
 
 namespace p_util {
-	void print(std::string text) {
-		for (int i = 0; i < text.length(); i++) {
-			std::cout << text[i];
+	void print(const std::string& text) {
+		for (char i : text) {
+			std::cout << i;
 		}
 
 		std::cout << std::endl;
 	}
 
-	std::vector<std::string> split(std::string string) {
+	std::vector<std::string> split(const std::string& string) {
 		std::vector<std::string> ans;
 		std::stringstream stream(string);
 		std::string next_line;
@@ -86,9 +86,9 @@ public:
 		b_special_attack = std::stoi(data[7]);
 		b_special_defense = std::stoi(data[8]);
 		b_speed = std::stoi(data[9]);
-		s_hp = (2 * b_hp) + 110;
+		s_hp = (2.f * (float) b_hp) + 110;
 		max_hp = s_hp;
-		s_attack = b_attack * 2 + 5;
+		s_attack = ((float) b_attack) * 2.f + 5.f;
 		s_defense = b_defense * 2 + 5;
 		s_special_attack = b_special_attack * 2 + 5;
 		s_special_defense = b_special_defense * 2 + 5;
@@ -105,15 +105,15 @@ public:
 	}
 	bool attack(std::string& move, pokemon& other, int player_num) {
 		std::vector<std::string> data = move_data[move];
-		float f_rand = ((rand() % 15) + 85.0) / 100.0;
+		float f_rand = ((float) (rand() % 15) + 85.f) / 100.0;
 		float STAB = (data[1] == type1 || data[1] == type2) ? 1.5 : 1;
 		float type = type_effectivenss[type_indices[move]][type_indices[other.type1]] *
 			type_effectivenss[type_indices[move]][type_indices[other.type2]];
 
 		const float MODIFIER = f_rand * STAB * type;
-		const float POWER = std::stoi(data[2]);
-		const float ATTACK = data[1] == "p" ? s_attack : s_special_attack;
-		const float DEFENSE = data[1] == "p" ? other.s_defense : other.s_special_defense;
+		const float POWER = std::stof(data[2]);
+		const auto ATTACK = (float) (data[1] == "p" ? s_attack : s_special_attack);
+		const auto DEFENSE = (float) (data[1] == "p" ? other.s_defense : other.s_special_defense);
 		const float DAMAGE = ((52 * POWER * (ATTACK / DEFENSE) / 50) + 2) * MODIFIER;
 
 		bool fainted = other.take_damage(DAMAGE);

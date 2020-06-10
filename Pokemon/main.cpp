@@ -9,12 +9,12 @@ int main() {
 	read_file();
 	try {
 	  start();
-	} catch(std::exception e) {
+	} catch(const std::exception& e) {
 		print("Quitting");
 	}
 }
 
-void start() {
+[[noreturn]] void start() {
 	while (true) {
 		switch (get_input("Do You Want To Create A Team Or Battle Using Existing Teams?", false, {
 			"Create Team",
@@ -74,7 +74,7 @@ void battle() {
 	std::vector<pokemon> p1_team;
 	std::vector<std::string>& p1_team_pokemon = u_teams[p1_team_name];
 	for (int i = 0; i < 6; i++) {
-		p1_team.push_back(pokemon(u_pokemon[p1_team_pokemon[i]][0], p1_team_pokemon[i],
+		p1_team.emplace_back(pokemon(u_pokemon[p1_team_pokemon[i]][0], p1_team_pokemon[i],
 			u_pokemon[p1_team_pokemon[i]][1],
 			u_pokemon[p1_team_pokemon[i]][2],
 			u_pokemon[p1_team_pokemon[i]][3],
@@ -84,7 +84,7 @@ void battle() {
 	std::vector<pokemon> p2_team;
 	std::vector<std::string> p2_team_pokemon = u_teams[p2_team_name];
 	for (int i = 0; i < 6; i++) {
-		p2_team.push_back(pokemon(u_pokemon[p2_team_pokemon[i]][0], p2_team_pokemon[i],
+		p2_team.emplace_back(pokemon(u_pokemon[p2_team_pokemon[i]][0], p2_team_pokemon[i],
 			u_pokemon[p2_team_pokemon[i]][1],
 			u_pokemon[p2_team_pokemon[i]][2],
 			u_pokemon[p2_team_pokemon[i]][3],
@@ -104,8 +104,8 @@ void create_pokemon() {
 	std::string input_pokemon;
 	std::vector<std::string> values;
 	std::vector<std::pair<int, std::string>> key_value = key_value_pairs(available_pokemon);
-	for (int i = 0; i < key_value.size(); i ++) {
-		values.push_back(key_value[i].second + "\n" + pokemon_image(key_value[i].second));
+	for (auto & i : key_value) {
+		values.push_back(i.second + "\n" + pokemon_image(i.second));
 	}
 	int in = get_input("Which Pokemon Do You Want To Add?", true, values);
 	add_user_pokemon(key_value[in - 1].second);
@@ -119,7 +119,7 @@ void add_pokemon(std::vector<std::string>& u_team) {
 		keys.push_back(pair.first);
 	}
 
-	if (keys.size() == 0) {
+	if (keys.empty()) {
 		print("You Have No Pokemon");
 		return;
 	}
@@ -222,7 +222,7 @@ void battle(std::vector<pokemon>& p1_team, std::vector<pokemon>& p2_team, pokemo
 
 				if (curr_p1.attack(p1_move, curr_p2, 2)) {
 					remove(p2_team, curr_p2);
-					int in = get_input(curr_p2.nick + " Has Fainted. Player 2: Which Pokemon Do You Want To Switch Out To?", false, to_string_array(p2_team));
+					in = get_input(curr_p2.nick + " Has Fainted. Player 2: Which Pokemon Do You Want To Switch Out To?", false, to_string_array(p2_team));
 					if (in == -1) {
 						print("Player 1 Has Won!");
 						return;
@@ -249,7 +249,7 @@ void battle(std::vector<pokemon>& p1_team, std::vector<pokemon>& p2_team, pokemo
 
 				if (curr_p2.attack(p2_move, curr_p1, 1)) {
 					remove(p1_team, curr_p1);
-					int in = get_input(curr_p1.name + " Has Fainted. Player 1: Which Pokemon Do You Want To Switch Out To?", false, to_string_array(p1_team));
+					in = get_input(curr_p1.name + " Has Fainted. Player 1: Which Pokemon Do You Want To Switch Out To?", false, to_string_array(p1_team));
 					if (in == -1) {
 						print("Player 2 Has Won!");
 						return;
@@ -277,13 +277,13 @@ void battle(std::vector<pokemon>& p1_team, std::vector<pokemon>& p2_team, pokemo
 ////////////////Helper Functions///////////////////
 
 int get_input(const std::string& prompt, bool fast, const std::vector<std::string>& options) {
-	if (options.size() == 0) {
+	if (options.empty()) {
 		return -1;
 	}
 
 	print(prompt + " If you want to exit, type -2.");
 	for (int i = 0, option_count = 1; i < options.size(); i++, option_count++) {
-		print(std::to_string(option_count) + ": " + options[i], fast ? 10 : 50);
+		print(std::to_string(option_count) + ": " + options[i]);
 	}
 	while (true) {
 		std::string input;
@@ -303,9 +303,9 @@ int get_input(const std::string& prompt, bool fast, const std::vector<std::strin
 	}
 }
 
-void print(const std::string& text, int delay) {
-	for (int i = 0; i < text.length(); i++) {
-		std::cout << text[i];
+void print(const std::string& text) {
+	for (char i : text) {
+		std::cout << i;
 	}
 
 	std::cout << std::endl;
@@ -320,7 +320,7 @@ void read_file() {
 	while (std::getline(data, next_line)) {
 		if (next_line[0] == '#') {
 			std::string p_name = split(next_line, 1);
-			pokemon_data[p_name] = next_line;;
+			pokemon_data[p_name] = next_line;
 			available_pokemon[count++] = p_name;
 			prev = p_name;
 			continue;
@@ -373,13 +373,6 @@ void read_file() {
 		}
 
 		move_data[prev] = curr_move_data;
-	}
-}
-
-template <typename T>
-void print_vector(std::vector<T>& vector) {
-	for (T t : vector) {
-		std::cout << t;
 	}
 }
 
@@ -487,8 +480,8 @@ void remove(std::vector<T>& vec, T& element) {
 std::vector<std::string> to_string_array(const std::vector<pokemon>& vec) {
 	std::vector<std::string> ans;
 
-	for (int i = 0; i < vec.size(); i++) {
-		ans.push_back(vec[i].nick);
+	for (const auto & i : vec) {
+		ans.push_back(i.nick);
 	}
 
 	return ans;
@@ -537,7 +530,7 @@ bool is_valid(const std::string& to_check, int max_num) {
 	}
 }
 
-std::string pokemon_image(std::string p_name) {
+std::string pokemon_image(const std::string& p_name) {
 	std::ifstream file(p_name + ".txt");
 	std::string next_line;
 	std::stringstream ss;
